@@ -114,7 +114,7 @@ export interface ResumeFormData {
   skillsInput: string;
   experience: Experience[];
   education: Education[];
-  projects: Project[];
+  projects?: Project[];
 }
 
 // Empty resume template for new resumes
