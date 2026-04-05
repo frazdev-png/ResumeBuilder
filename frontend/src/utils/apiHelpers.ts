@@ -87,5 +87,6 @@ export function apiToFormData(resume: Resume): ResumeFormData {
       endDate: edu.end_date,
       description: edu.description,
     })),
+    projects: [], // Add empty projects array
   };
 }
