@@ -3,11 +3,12 @@ services:
     name: ai-resume-builder-backend
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.0
+        value: "3.11"
       - key: MONGODB_URL
         sync: false
       - key: JWT_SECRET_KEY
@@ -19,4 +20,4 @@ services:
       - key: GEMINI_API_KEY
         sync: false
       - key: ALLOWED_ORIGINS
-        value: "https://your-frontend-url.vercel.app,http://localhost:5173"
+        sync: false
