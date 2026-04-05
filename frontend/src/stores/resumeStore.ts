@@ -121,7 +121,7 @@ export const useResumeStore = create<ResumeState>()(
         set((state) => ({
           formData: {
             ...state.formData,
-            projects: [...state.formData.projects, { ...project, id: generateId() }],
+            projects: [...(state.formData.projects || []), { ...project, id: generateId() }],
           },
         })),
 
@@ -129,7 +129,7 @@ export const useResumeStore = create<ResumeState>()(
         set((state) => ({
           formData: {
             ...state.formData,
-            projects: state.formData.projects.map((proj) =>
+            projects: (state.formData.projects || []).map((proj) =>
               proj.id === id ? { ...proj, ...data } : proj
             ),
           },
@@ -139,7 +139,7 @@ export const useResumeStore = create<ResumeState>()(
         set((state) => ({
           formData: {
             ...state.formData,
-            projects: state.formData.projects.filter((proj) => proj.id !== id),
+            projects: (state.formData.projects || []).filter((proj) => proj.id !== id),
           },
         })),
 
