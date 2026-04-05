@@ -6,7 +6,7 @@
  */
 
 import type { ResumeFormData, Resume, Experience, Education } from '../types/resume';
-import type { ResumeCreate, ResumeUpdate, ExperienceApi, EducationApi } from '../types/resume';
+import type { ResumeCreate, ExperienceApi, EducationApi } from '../types/resume';
 
 /**
  * Convert experience from form format (camelCase) to API format (snake_case)
