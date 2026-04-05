@@ -10,7 +10,7 @@ These models define the structure of our data and ensure:
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 
 
 # ============== User Models ==============
@@ -31,13 +31,12 @@ class User(UserBase):
     id: str = Field(..., alias="_id")
     created_at: datetime
     
-    class Config:
-        # Allows using MongoDB's _id field as id
-        populate_by_name = True
-        # Enable JSON serialization for datetime
-        json_encoders = {
+    model_config = ConfigDict(
+        populate_by_name=True,
+        json_encoders={
             datetime: lambda v: v.isoformat()
         }
+    )
 
 
 # ============== Experience Models ==============
@@ -109,11 +108,12 @@ class Resume(ResumeBase):
     created_at: datetime
     updated_at: datetime
     
-    class Config:
-        populate_by_name = True
-        json_encoders = {
+    model_config = ConfigDict(
+        populate_by_name=True,
+        json_encoders={
             datetime: lambda v: v.isoformat()
         }
+    )
 
 
 # ============== AI Improvement Models ==============
