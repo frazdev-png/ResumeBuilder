@@ -47,9 +47,15 @@ app = FastAPI(
 # Configure CORS (Cross-Origin Resource Sharing)
 # This allows the frontend to make requests to the backend
 settings = get_settings()
+
+# Parse comma-separated origins or use default
+origins = ["*"]
+if settings.frontend_url and settings.frontend_url != "*":
+    origins = [url.strip() for url in settings.frontend_url.split(",")]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url],  # Only allow our frontend
+    allow_origins=origins,  # Allow specified origins
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
